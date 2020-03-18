@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ShoppingCart.Domain.Entities.Product>
+
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Products</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(product => product.Name)</th>
+            <th>@Html.DisplayNameFor(product => product.Description)</th>
+            <th>@Html.DisplayNameFor(product => product.Price)</th>
+            <th>@Html.DisplayNameFor(product => product.Category)</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(model => product.Name)</td>
+                <td>@Html.DisplayFor(model => product.Description)</td>
+                <td>@product.Price.ToString("c")</td>
+                <td>@Html.DisplayFor(model => product.Category)</td>
+                <td class="text-center">
+                    @Html.ActionLink("Edit", "Edit", new { id = product.Id }, new { @class = "btn btn-warning btn-sm" })
+                    @Html.ActionLink("View", "View", new { id = product.Id }, new { @class = "btn btn-success btn-sm" })
+                    @using (Html.BeginForm("Delete", "Admin", null, FormMethod.Post, new { @class = "d-inline-block" }))
+                    {
+                        @Html.Hidden("Id", product.Id)
+                        <button type="submit" name="btnAction" value="delete" class="btn btn-danger btn-sm">Delete</button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4">&nbsp;</td>
+            <td class="text-center">
+                @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+            </td>
+        </tr>
+    </tfoot>
+</table>

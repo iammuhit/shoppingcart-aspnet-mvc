@@ -1,0 +1,38 @@
+﻿@model ShoppingCart.Domain.Entities.Product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Add New Product</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.EditorFor(model => model.Name, null, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Name, null, new { @class = "form-text text-muted" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description)
+        @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @rows = 10 })
+        @Html.ValidationMessageFor(model => model.Description, null, new { @class = "form-text text-muted" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price)
+        @Html.EditorFor(model => model.Price, null, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Price, null, new { @class = "form-text text-muted" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Category)
+        @Html.EditorFor(model => model.Category, null, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Category, null, new { @class = "form-text text-muted" })
+    </div>
+
+    <button type="submit" name="btnAction" value="save" class="btn btn-primary">Save & Exit</button>
+    @Html.ActionLink("Back to Products", "Index", "Admin", new { @class = "btn btn-secondary" })
+}

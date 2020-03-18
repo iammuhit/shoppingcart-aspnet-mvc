@@ -1,0 +1,22 @@
+﻿@model ShoppingCart.WebUI.Models.ProductsListViewModel
+
+@{ ViewBag.Title = "Products"; }
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "List", "Product", null, null)</li>
+        <li class="breadcrumb-item active" aria-current="page">Products</li>
+    </ol>
+</nav>
+
+<div class="row">
+    @foreach (var p in Model.Products) {
+        @Html.Partial("Item", p)
+    }
+</div>
+
+<nav aria-label="Page navigation">
+    <ul class="pagination mt-3 mb-3">
+        @Html.PageLinks(Model.PaginationInfo, x => Url.Action("List", new { category = Model.CurrentCategory, page = x }))
+    </ul>
+</nav>

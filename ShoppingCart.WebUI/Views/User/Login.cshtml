@@ -1,0 +1,37 @@
+﻿@model ShoppingCart.WebUI.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-header">Login</div>
+
+            <div class="card-body">
+                <p>Please sign in to access the administration area:</p>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Username)
+                        @Html.EditorFor(model => model.Username, null, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Username, null, new { @class = "form-text text-muted" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Password)
+                        @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Password, null, new { @class = "form-text text-muted" })
+                    </div>
+
+                    <button type="submit" name="btnAction" value="login" class="btn btn-primary">Sign In</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>

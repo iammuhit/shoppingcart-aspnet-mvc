@@ -1,0 +1,14 @@
+﻿@model ShoppingCart.Domain.Entities.Product
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>@Model.Name</h2>
+<p><strong>Description:</strong> @Model.Description</p>
+<p><strong>Category:</strong> @Model.Category</p>
+<p><strong>Price:</strong> @Model.Price.ToString("c")</p>
+
+<p>@Html.ActionLink("Back to Products", "Index", "Admin", new { @class = "btn btn-secondary" })</p>
+

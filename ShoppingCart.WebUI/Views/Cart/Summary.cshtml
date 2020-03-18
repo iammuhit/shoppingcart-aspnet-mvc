@@ -1,0 +1,8 @@
+﻿@model ShoppingCart.Domain.Entities.Cart
+
+    <div class="navbar-right">
+        @Html.ActionLink("Checkout", "Index", "Cart", new { returnUrl = Request.Url.PathAndQuery }, new { @class = "btn btn-primary navbar-btn" })
+        <b>Your Cart:</b>
+        @Model.Items.Sum(x => x.Quantity) item(s),
+        @Model.TotalPrice().ToString("c")
+    </div>

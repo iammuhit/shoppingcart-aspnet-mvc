@@ -1,0 +1,18 @@
+﻿@model IEnumerable<string>
+
+<ul class="list-group list-group-flush">
+    <li class="list-group-item @(ViewBag.SelectedCategory == null ? "active" : "")">@Html.ActionLink("All Categories", "List", "Product", null, new { @class = "menu-link" })</li>
+
+    @foreach (var link in Model)
+    {
+        <li class="list-group-item @(ViewBag.SelectedCategory == link ? "active" : "")">
+            @Html.RouteLink(link, new
+            {
+                controller = "Product",
+                action = "List",
+                category = link,
+                page = 1
+            }, new { @class = "menu-link" })
+        </li>
+    }
+</ul>

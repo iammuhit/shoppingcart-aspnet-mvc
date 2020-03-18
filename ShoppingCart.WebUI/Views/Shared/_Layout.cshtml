@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewBag.Title | Shopping Cart</title>
+
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/app.min.css" />
+    <link rel="stylesheet" href="~/Content/fontawesome.min.css" />
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            @Html.ActionLink("Shopping Cart", "List", "Product", null, new { @class = "navbar-brand" })
+            @Html.Action("Summary", "Cart")
+        </div>
+    </nav>
+
+    <section id="primary" class="container-fluid pt-3 pb-3">
+        <div class="row">
+            <div id="categories" class="col-lg-3">
+                <div class="card">
+                    <div class="card-header">Categories</div>
+                    @Html.Action("Menu", "Navigation")
+                </div>
+            </div>
+            <div class="col-lg-9">
+                @RenderBody()
+            </div>
+        </div>
+    </section>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/app.min.js"></script>
+</body>
+</html>
